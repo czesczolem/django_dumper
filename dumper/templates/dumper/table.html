@@ -3,9 +3,9 @@
         <title>cust-demo tcp dump service</title>
     </head>
     <body>
-            <ul id="navigation">
-            {% for item in db_state %}
-             <li><a href="{{item}}">{{item[10:]}}</a></li>
+            <ul id="table">
+            {% for item in all_files %}
+             <li>>{{item}}</li>
             {% endfor %}
     </ul>
     </body>

@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-import time
 from .forms import DumpForm
 import datetime
 from django.utils.encoding import smart_str
@@ -34,7 +33,7 @@ def stop(request):
         return render(request, 'dumper/stop_dumping.html')
     else:
         tcp_dump = False
-        return redirect('')
+        return redirect('file_list')
 
 
 def download_file(request, file_id):
@@ -46,4 +45,4 @@ def download_file(request, file_id):
 
 def file_list(request):
     all_files = Dump.objects.all()
-    return render(request, 'dumper/file_list.html', {'all_files': all_files})
+    return render(request, 'dumper/table.html', {'all_files': all_files})
