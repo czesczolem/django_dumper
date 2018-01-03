@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import time
 from .forms import DumpForm
 import datetime
+from django.utils.encoding import smart_str
+from .models import Dump
 
 # Create your views here.
 
@@ -24,4 +26,18 @@ def index(request):
                 tcp_dump = True
                 dump_item = form.save(commit=False)
                 dump_item.date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            return render(request, 'dumper/stop_dumping.html')
+            return redirect('stop')
+
+def stop(request):
+    return render(request, 'dumper/stop_dumping.html')
+
+def download_file(request, file_id):
+    response = HttpResponse(
+        content_type='application/force-download')
+    response['Content-Disposition'] = 'attachment; filename=%s' % smart_str('tests.py')
+    response['X-Sendfile'] = smart_str('tests.py')
+    return response
+
+def file_list(request):
+    all_files = Dump.objects.all()
+    return render(request, 'dumper/file_list.html', {'all_files': all_files})
