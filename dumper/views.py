@@ -29,7 +29,13 @@ def index(request):
             return redirect('stop')
 
 def stop(request):
-    return render(request, 'dumper/stop_dumping.html')
+    global tcp_dump
+    if request.method == 'GET':
+        return render(request, 'dumper/stop_dumping.html')
+    else:
+        tcp_dump = False
+        return redirect('')
+
 
 def download_file(request, file_id):
     response = HttpResponse(
