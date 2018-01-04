@@ -4,8 +4,8 @@
     </head>
     <body>
             <ul id="table">
-            {% for item in all_files %}
-             <li>>{{item}}</li>
+            {% for item in file_list %}
+             <li><a href="http://127.0.0.1:8000/dumper/download/{{item}}">{{item}}</a></li>
             {% endfor %}
     </ul>
     </body>
