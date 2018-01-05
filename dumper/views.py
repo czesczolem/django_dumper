@@ -5,6 +5,10 @@ import datetime
 from django.utils.encoding import smart_str
 from .models import Dump
 import os
+from django.contrib.auth.models import User
+from django.views import generic
+from django.views.generic import View
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 
@@ -65,3 +69,16 @@ def dump_timeout(request):
     global tcp_dump
     tcp_dump = False
     return JsonResponse({"tcp_flag": tcp_dump})
+
+def login_page(request):
+    # form_class = User
+    template_name = 'dumper/login.html'
+    if request.method == 'GET':
+        form = User()
+        return render(request, template_name, {'form': form})
+    # else:
+    #     form = User(request.POST)
+    #     if form.is_valid():
+    #         user = authenticate(username=username)
+
+
