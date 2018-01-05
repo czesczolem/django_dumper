@@ -46,6 +46,8 @@ def download_file(request, file_id):
     return response
 
 def file_list(request):
+    #TODO:
+    #form for GET method instead post
     user_file_path = 'user_data'
     dir_path = os.path.dirname(os.path.realpath(__file__))
     file_list = os.listdir(dir_path + '/' + user_file_path)

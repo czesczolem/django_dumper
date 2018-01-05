@@ -3,10 +3,12 @@
         <title>cust-demo tcp dump service</title>
     </head>
     <body>
+            <a href="/dumper/">Return</a>
+            <p> Files to download: </p>
             <ul id="table">
             {% for item in file_list %}
-             <li><a href="http://127.0.0.1:8000/dumper/download/{{item}}">{{item}}</a></li>
+                <li><a href="http://127.0.0.1:8000/dumper/download/{{item}}">{{item}}</a></li>
             {% endfor %}
-    </ul>
+            </ul>
     </body>
 </html>

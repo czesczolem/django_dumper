@@ -2,7 +2,6 @@ import subprocess
 import requests
 import json
 import time
-from django.views.decorators.csrf import csrf_exempt
 
 
 
