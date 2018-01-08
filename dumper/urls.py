@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^server_state$', views.server_state, name='server_state'),
     url(r'^dump_timeout$', views.dump_timeout, name='dump_timeout'),
     url(r'^login$', login, {'template_name': 'dumper/login.html'}),
+    url(r'^logout_view', views.logout_view, name='logout'),
 
 ]

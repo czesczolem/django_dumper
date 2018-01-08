@@ -8,10 +8,13 @@ import os
 from django.contrib.auth.models import User
 from django.views import generic
 from django.views.generic import View
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+
 
 # Create your views here.
-
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# CHANGE SECRET KEYY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 tcp_dump = False
 filename = ''
 
@@ -23,7 +26,8 @@ def index(request):
     else:
         if tcp_dump:
             form = DumpForm()
-            return render(request, 'dumper/start_dumping.html', {'form': form,'message': 'Server is busy now. Please try again in few minutes'})
+            return render(request, 'dumper/start_dumping.html', {'form': form,'message':
+                'Server is busy now. Please try again in few minutes'})
         else:
             form = DumpForm(request.POST)
             if form.is_valid():
@@ -76,9 +80,9 @@ def login_page(request):
     if request.method == 'GET':
         form = User()
         return render(request, template_name, {'form': form})
-    # else:
-    #     form = User(request.POST)
-    #     if form.is_valid():
-    #         user = authenticate(username=username)
+
+def logout_view(request):
+    logout(request)
+    return redirect('index')
 
 
